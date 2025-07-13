@@ -168,9 +168,22 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  html,
+  body {
+    overflow: auto; /* Allow scrolling on mobile */
+  }
+
+  .app-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
   .app-sidebar {
     width: 100vw;
     transform: translateX(-100vw);
+    position: fixed;
+    z-index: 50;
   }
 
   .app-sidebar.collapsed {
@@ -183,9 +196,30 @@
 
   .app-main {
     margin-left: 0;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
 
   .app-main.sidebar-collapsed {
     margin-left: 0;
+  }
+
+  .app-content {
+    overflow: visible;
+    height: auto;
+    min-height: calc(100vh - 64px);
+  }
+
+  .content-section {
+    height: auto;
+    min-height: calc(100vh - 64px);
+    overflow: visible;
+  }
+
+  .section-body {
+    overflow: visible;
+    height: auto;
+    min-height: 0;
   }
 }
