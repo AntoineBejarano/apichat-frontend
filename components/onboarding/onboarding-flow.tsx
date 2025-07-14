@@ -534,7 +534,7 @@ export function OnboardingFlow() {
 
           {/* Bottom Footer */}
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-400 text-sm mb-4 md:mb-0">© 2024 APIchat. All rights reserved.</p>
+            <p className="text-slate-400 text-sm mb-4 md:mb-0">© 2025 APIchat. All rights reserved.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-slate-400 hover:text-apichat-lime transition-colors duration-200">
                 <Twitter className="h-5 w-5" />
