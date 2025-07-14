@@ -27,7 +27,7 @@ export function GuestBanner() {
               </div>
               <div>
                 <h3 className="text-slate-900 font-semibold text-lg">{t("onboarding.guestWelcome")}</h3>
-                <p className="text-slate-600 text-sm mt-1 max-w-2xl">{t("onboarding.guestMessage")}</p>
+                <p className="text-slate-600 text-sm mt-1 max-w-2xl">{t("onboarding.guestNote")}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
