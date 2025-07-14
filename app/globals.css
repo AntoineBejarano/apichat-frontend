@@ -105,11 +105,79 @@
   background: #64748b;
 }
 
-/* Animation classes */
-@keyframes fadeIn {
+/* N8N-style Dynamic Background Animations */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  33% {
+    transform: translate(-50%, -50%) rotate(120deg) scale(1.1);
+  }
+  66% {
+    transform: translate(-50%, -50%) rotate(240deg) scale(0.9);
+  }
+}
+
+@keyframes float-particle {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(132, 204, 22, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(132, 204, 22, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+  }
+}
+
+@keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -117,8 +185,74 @@
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
+/* Animation classes */
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-particle {
+  animation: float-particle 6s ease-in-out infinite;
+}
+
+.animate-grid-move {
+  animation: grid-move 20s linear infinite;
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+/* Animation delays */
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-3000 {
+  animation-delay: 3s;
+}
+
+.animation-delay-5000 {
+  animation-delay: 5s;
+}
+
+/* Grid pattern background */
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(132, 204, 22, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(132, 204, 22, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Hover effects for cards */
+.group:hover .group-hover\:from-apichat-lime\/30 {
+  --tw-gradient-from: rgba(132, 204, 22, 0.3);
+}
+
+.group:hover .group-hover\:to-apichat-lime\/20 {
+  --tw-gradient-to: rgba(132, 204, 22, 0.2);
+}
+
+.group:hover .group-hover\:from-apichat-accent\/30 {
+  --tw-gradient-from: rgba(34, 211, 238, 0.3);
+}
+
+.group:hover .group-hover\:to-apichat-accent\/20 {
+  --tw-gradient-to: rgba(34, 211, 238, 0.2);
 }
 
 /* Code block styling */
@@ -132,4 +266,11 @@
 
 .prose pre code {
   @apply bg-transparent p-0 text-slate-100;
+}
+
+/* Backdrop blur support */
+@supports (backdrop-filter: blur(10px)) {
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
 }
