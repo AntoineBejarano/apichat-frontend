@@ -1,5 +1,5 @@
 "use client"
-import { MessageCircle, Settings, Brain, History, ChevronDown, Globe, X, Zap, Database } from "lucide-react"
+import { MessageCircle, Settings, Brain, History, ChevronDown, Globe, X, Zap, Database, Bot } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,6 +16,7 @@ const navigation = [
   { title: "nav.chat", icon: MessageCircle, id: "chat" },
   { title: "nav.applications", icon: Settings, id: "applications" },
   { title: "nav.databases", icon: Database, id: "databases" },
+  { title: "nav.agents", icon: Bot, id: "agents" },
   { title: "nav.strategies", icon: Brain, id: "strategies" },
   { title: "nav.history", icon: History, id: "history" },
   { title: "settings.title", icon: Settings, id: "settings" },

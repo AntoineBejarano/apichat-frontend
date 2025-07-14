@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { AppSidebar } from "@/components/app-sidebar"
-import { AppHeader } from "@/components/app-header"
 import { ChatSection } from "@/components/chat-section"
 import { ApplicationsSection } from "@/components/applications-section"
 import { DatabasesSection } from "@/components/databases-section"
+import { AgentsSection } from "@/components/agents-section"
 import { StrategiesSection } from "@/components/strategies-section"
 import { HistorySection } from "@/components/history-section"
 import { SettingsSection } from "@/components/settings-section"
@@ -18,16 +18,30 @@ import { SchedulerProvider } from "@/contexts/scheduler-context"
 function APIchatContent() {
   const [activeTab, setActiveTab] = React.useState("chat")
   const [sidebarOpen, setSidebarOpen] = React.useState(true)
+  const [selectedAgent, setSelectedAgent] = React.useState<string>("1")
+  const [selectedApp, setSelectedApp] = React.useState<string>("")
+  const [selectedDb, setSelectedDb] = React.useState<string>("")
   const { isAuthenticated, isLoading } = useAuth()
 
   const renderContent = () => {
     switch (activeTab) {
       case "chat":
-        return <ChatSection />
+        return (
+          <ChatSection
+            selectedAgent={selectedAgent}
+            onAgentChange={setSelectedAgent}
+            selectedApp={selectedApp}
+            onAppChange={setSelectedApp}
+            selectedDb={selectedDb}
+            onDbChange={setSelectedDb}
+          />
+        )
       case "applications":
         return <ApplicationsSection />
       case "databases":
         return <DatabasesSection />
+      case "agents":
+        return <AgentsSection />
       case "strategies":
         return <StrategiesSection />
       case "history":
@@ -35,7 +49,16 @@ function APIchatContent() {
       case "settings":
         return <SettingsSection />
       default:
-        return <ChatSection />
+        return (
+          <ChatSection
+            selectedAgent={selectedAgent}
+            onAgentChange={setSelectedAgent}
+            selectedApp={selectedApp}
+            onAppChange={setSelectedApp}
+            selectedDb={selectedDb}
+            onDbChange={setSelectedDb}
+          />
+        )
     }
   }
 
@@ -73,15 +96,10 @@ function APIchatContent() {
 
         {/* Main Content */}
         <div className={`app-main ${!sidebarOpen ? "sidebar-collapsed" : ""}`}>
-          {/* Header */}
-          <div className="app-header">
-            <AppHeader onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
-          </div>
-
           {/* Content */}
           <div className="app-content">
             <GuestBanner />
-            <div className="flex-1 bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl overflow-hidden rounded-t-2xl mx-6 mb-6">
+            <div className="flex-1 bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl overflow-hidden">
               {renderContent()}
             </div>
           </div>

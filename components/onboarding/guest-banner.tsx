@@ -26,8 +26,8 @@ export function GuestBanner() {
                 <Sparkles className="h-6 w-6 text-slate-900" />
               </div>
               <div>
-                <h3 className="text-white font-semibold text-lg">{t("onboarding.guestWelcome")}</h3>
-                <p className="text-slate-300 text-sm mt-1 max-w-2xl">{t("onboarding.guestMessage")}</p>
+                <h3 className="text-slate-900 font-semibold text-lg">{t("onboarding.guestWelcome")}</h3>
+                <p className="text-slate-600 text-sm mt-1 max-w-2xl">{t("onboarding.guestMessage")}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -42,7 +42,7 @@ export function GuestBanner() {
                 size="sm"
                 variant="ghost"
                 onClick={() => setIsVisible(false)}
-                className="text-slate-400 hover:text-white rounded-lg h-8 w-8 p-0"
+                className="text-slate-500 hover:text-slate-700 rounded-lg h-8 w-8 p-0"
               >
                 <X className="h-4 w-4" />
               </Button>

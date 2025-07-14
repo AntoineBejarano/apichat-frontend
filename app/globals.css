@@ -2,224 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --apichat-darker: #0f172a;
+  --apichat-lime: #84cc16;
+  --apichat-accent: #22d3ee;
+}
+
 @layer base {
-  :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --radius: 0.75rem;
-
-    /* Sidebar variables */
-    --sidebar-background: 222.2 84% 4.9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 210 40% 98%;
-    --sidebar-primary-foreground: 222.2 84% 4.9%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 212.7 26.8% 83.9%;
-  }
-
   * {
     @apply border-border;
-    box-sizing: border-box;
   }
-
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
   body {
     @apply bg-background text-foreground;
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-      Arial, "Noto Sans", sans-serif;
-  }
-
-  /* Reset any default margins/padding */
-  #__next,
-  [data-nextjs-scroll-focus-boundary] {
-    height: 100%;
   }
 }
 
-/* Layout específico para la aplicación */
-.app-layout {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: relative;
-}
-
-.app-sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 280px;
-  z-index: 40;
-  transform: translateX(0);
-  transition: transform 0.3s ease-in-out;
-  background: rgba(15, 23, 42, 0.98);
-  backdrop-filter: blur(12px);
-  border-right: 1px solid rgba(71, 85, 105, 0.5);
-}
-
-.app-sidebar.collapsed {
-  transform: translateX(-280px);
-}
-
-.app-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 280px;
-  transition: margin-left 0.3s ease-in-out;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.app-main.sidebar-collapsed {
-  margin-left: 0;
-}
-
-.app-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  height: 64px;
-  flex-shrink: 0;
-}
-
-.app-content {
-  flex: 1;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.5) 100%);
-  display: flex;
-  flex-direction: column;
-}
-
-.content-section {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.section-header {
-  flex-shrink: 0;
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(71, 85, 105, 0.5);
-}
-
-.section-body {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  min-height: 0; /* Importante para que funcione el flex */
-}
-
-.section-footer {
-  flex-shrink: 0;
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(71, 85, 105, 0.5);
-}
-
-/* Scrollbar personalizado */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(51, 65, 85, 0.3);
-  border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(132, 204, 22, 0.5);
-  border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(132, 204, 22, 0.7);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  html,
-  body {
-    overflow: auto; /* Allow scrolling on mobile */
-  }
-
+@layer utilities {
   .app-layout {
-    flex-direction: column;
-    height: auto;
-    min-height: 100vh;
+    @apply flex h-screen;
   }
 
   .app-sidebar {
-    width: 100vw;
-    transform: translateX(-100vw);
-    position: fixed;
-    z-index: 50;
+    @apply w-64 flex-shrink-0 transition-all duration-300 ease-in-out;
   }
 
   .app-sidebar.collapsed {
-    transform: translateX(-100vw);
-  }
-
-  .app-sidebar:not(.collapsed) {
-    transform: translateX(0);
+    @apply w-0 overflow-hidden;
   }
 
   .app-main {
-    margin-left: 0;
-    height: auto;
-    min-height: 100vh;
-    overflow: visible;
+    @apply flex-1 flex flex-col transition-all duration-300 ease-in-out;
   }
 
   .app-main.sidebar-collapsed {
-    margin-left: 0;
+    @apply ml-0;
   }
 
   .app-content {
-    overflow: visible;
-    height: auto;
-    min-height: calc(100vh - 64px);
+    @apply flex-1 flex flex-col overflow-hidden;
   }
 
-  .content-section {
-    height: auto;
-    min-height: calc(100vh - 64px);
-    overflow: visible;
+  .bg-apichat-darker {
+    background-color: var(--apichat-darker);
   }
 
-  .section-body {
-    overflow: visible;
-    height: auto;
-    min-height: 0;
+  .bg-apichat-lime {
+    background-color: var(--apichat-lime);
   }
+
+  .bg-apichat-accent {
+    background-color: var(--apichat-accent);
+  }
+
+  .text-apichat-lime {
+    color: var(--apichat-lime);
+  }
+
+  .text-apichat-accent {
+    color: var(--apichat-accent);
+  }
+
+  .border-apichat-lime {
+    border-color: var(--apichat-lime);
+  }
+
+  .border-apichat-accent {
+    border-color: var(--apichat-accent);
+  }
+
+  .from-apichat-darker {
+    --tw-gradient-from: var(--apichat-darker);
+  }
+
+  .from-apichat-lime {
+    --tw-gradient-from: var(--apichat-lime);
+  }
+
+  .to-apichat-accent {
+    --tw-gradient-to: var(--apichat-accent);
+  }
+
+  .to-apichat-lime {
+    --tw-gradient-to: var(--apichat-lime);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Animation classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Code block styling */
+.prose pre {
+  @apply bg-slate-900 border border-slate-700;
+}
+
+.prose code {
+  @apply text-apichat-lime bg-slate-800 px-1 py-0.5 rounded text-sm;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-slate-100;
 }
